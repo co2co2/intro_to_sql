@@ -1,0 +1,112 @@
+1.
+intro_to_sql=# SELECT name FROM robots WHERE source = 'Star Wars';
+ name
+------
+ C3PO
+ R2D2
+(2 rows)
+
+2.
+
+intro_to_sql=# SELECT * From robots WHERE personality='anxious';
+ name |  source   | personality | id
+------+-----------+-------------+----
+ C3PO | Star Wars | anxious     |  4
+(1 row)
+
+3.
+intro_to_sql=# SELECT name, nut_free FROM recipes WHERE nut_free = true;
+                   name                    | nut_free
+-------------------------------------------+----------
+ Butternut Squash Bake                     | t
+ Vegetarian Bibimbap                       | t
+ French Veggie Loaf                        | t
+ Quinoa and Black Beans                    | t
+ Juicy Roasted Chicken                     | t
+ Garlic Green Beans                        | t
+ Stout Slow Cooker Corned Beef and Veggies | t
+(7 rows)
+
+
+4.
+intro_to_sql=# SELECT COUNT(*) FROM recipes WHERE gluten_free = true AND vegetarian = false;
+ count
+-------
+     2
+(1 row)
+
+
+5.
+
+intro_to_sql=# SELECT name FROM animals ORDER BY number_of_legs;
+       name
+------------------
+ whale
+ hammerhead shark
+ bat
+ duck
+ owl
+ chicken
+ cow
+ sheep
+ cat
+ octopus
+(10 rows)
+
+ ANS:  octopus
+
+6.
+
+intro_to_sql=# SELECT name FROM board_games WHERE mins_to_play = (SELECT MIN(mins_to_play) FROM board_games);
+   name
+----------
+ Sushi Go
+ Quixo
+(2 rows)
+
+7.
+intro_to_sql=# SELECT name, minutes_required FROM recipes WHERE minutes_required = (SELECT Max(minutes_required) FROM recipes);
+                   name                    | minutes_required
+-------------------------------------------+------------------
+ Stout Slow Cooker Corned Beef and Veggies |              390
+
+8.
+
+intro_to_sql=#  SELECT * FROM robots WHERE name LIKE 'M%';
+      name      |                source                |  personality  | id
+----------------+--------------------------------------+---------------+----
+ Marvin         | The Hitchhiker's Guide to the Galaxy | pessimistic   |  3
+ Mr. Butlertron | Clone High                           | compassionate |  5
+(2 rows)
+
+9.
+
+intro_to_sql=# SELECT COUNT(*) FROM board_games WHERE max_players >= 8 AND min_players <= 8;
+ count
+-------
+     3
+(1 row)
+
+10.
+intro_to_sql=# SELECT name FROM animals WHERE swimming= true AND egg_laying = true;
+  name
+---------
+ octopus
+ duck
+(2 rows)
+
+11.
+
+intro_to_sql=# SELECT name FROM animals WHERE swimming= true AND egg_laying = true AND flying = false;
+  name
+---------
+ octopus
+(1 row)
+
+12.
+
+intro_to_sql=# SELECT name FROM board_games WHERE max_players = (SELECT MAX(max_players) FROM board_games);
+          name
+------------------------
+ Cards Against Humanity
+(1 row)
